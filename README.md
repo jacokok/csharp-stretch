@@ -6,6 +6,8 @@ Simple VSCode extension to improve c# experience
 
 ## Features
 
+### Create New CLass
+
 You can create a class from the context menu with modern C# syntax and namespace.
 
 ![Screenshot](/assets/screenshot.png "Screenshot")
@@ -17,4 +19,13 @@ public class NewClass
 {
     
 }
+```
+
+### Namespace
+
+The namespace can be derived from folder path.
+Additionally the root namespace can also be spcified in the .csproj file.
+
+```xml
+<RootNamespace>TestMake</RootNamespace>
 ```
