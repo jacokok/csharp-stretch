@@ -1,2 +1,3 @@
-# csharp-stretch
-VSCode extension to improve c# experience
+# C# Stretch
+
+Simple VSCode extension to improve c# experience

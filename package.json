@@ -1,0 +1,78 @@
+{
+  "name": "csharp-stretch",
+  "displayName": "C# Stretch",
+  "description": "Simple VSCode extension to improve c# experience",
+  "publisher": "jacokok",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jacokok/csharp-stretch"
+  },
+  "icon": "assets/logo.png",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.56.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Snippets"
+  ],
+  "keywords": [
+    "C#",
+    "CSharp",
+    "Namespace",
+    "Autocompletion",
+    "Autocomplete",
+    "IntelliSense",
+    ".NET",
+    ".NET Core"
+  ],
+  "activationEvents": [
+    "onLanguage:csharp",
+    "onCommand:csharpstretch.createClass"
+  ],
+  "contributes": {
+    "submenus": [
+      {
+        "id": "csharpstretch.newItem",
+        "label": "New C# File"
+      }
+    ],
+    "menus": {
+      "csharpstretch.newItem": [
+        {
+          "command": "csharpstretch.createClass"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "csharpstretch.createClass",
+          "when": "false"
+        }
+      ],
+      "explorer/context": [
+        {
+          "submenu": "csharpstretch.newItem",
+          "when": "explorerResourceIsFolder"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "csharpstretch.createClass",
+        "title": "Class"
+      }
+    ]
+  },
+  "main": "./out/extension.js",
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "postinstall": "node ./node_modules/vscode/bin/install"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.25",
+    "typescript": "^4.6.3",
+    "vscode": "^1.1.37"
+  }
+}
