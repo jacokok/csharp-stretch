@@ -12,8 +12,7 @@ export function activate(context: vscode.ExtensionContext) {
         vscode.window.showErrorMessage("Could not find file path!");
         return;
       }
-      await createFile(fileFolder, filePath);
-      console.log("test");
+      await createFile(fileFolder, filePath, "class");
     }
   );
   context.subscriptions.push(disposable);

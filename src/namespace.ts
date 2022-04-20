@@ -8,7 +8,7 @@ export const getNamespace = async (fileName: string) => {
   const csprojInfo = getCsprojFile(fileName);
 
   if (!csprojInfo) {
-    return;
+    return "";
   }
 
   let rootNamespace = await getRootNameSpaceCsproj(csprojInfo.fullPath);

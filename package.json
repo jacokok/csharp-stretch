@@ -48,6 +48,12 @@
           "submenu": "csharpstretch.newItem",
           "when": "explorerResourceIsFolder"
         }
+      ],
+      "commandPalette": [
+        {
+          "command": "csharpstretch.createClass",
+          "when": "false"
+        }
       ]
     },
     "commands": [
