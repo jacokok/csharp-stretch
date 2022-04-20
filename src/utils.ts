@@ -15,12 +15,31 @@ export const getPath = (options: RegisterCommandArgs) => {
 };
 
 export const createFile = async (
+  fileFolder: string,
   filename: string
   // templateName: string,
   // objectName: string,
   // namespace: string
 ) => {
-  const namespace = await getNamespace(filename);
+  const namespace = await getNamespace(fileFolder);
+  const activeDoc = vscode.window.activeTextEditor?.document;
   let text = "namespace " + namespace + ";";
-  await fs.writeFileSync(filename + "/test.json", text);
+  await fs.writeFileSync(`${fileFolder}/${filename}`, text);
+};
+
+export const fileWindow = async (template: string) => {
+  try {
+    let newFilename = await vscode.window.showInputBox({
+      ignoreFocusOut: true,
+      prompt: "Please enter a name for the new file(s)",
+      value: `New${template}`,
+    });
+    return newFilename;
+  } catch (errOnInput) {
+    console.error("Error on input", errOnInput);
+
+    vscode.window.showErrorMessage(
+      "Error on input. See extension log for more info"
+    );
+  }
 };

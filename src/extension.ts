@@ -1,14 +1,19 @@
 import * as vscode from "vscode";
 import { RegisterCommandArgs } from "./types";
-import { getPath, createFile } from "./utils";
+import { getPath, createFile, fileWindow } from "./utils";
 
 export function activate(context: vscode.ExtensionContext) {
   const disposable = vscode.commands.registerCommand(
     "csharpstretch.createClass",
     async (options: RegisterCommandArgs) => {
-      console.log(options);
-      await createFile(getPath(options));
-      vscode.window.showInformationMessage("Hello World!");
+      const fileFolder = getPath(options);
+      const filePath = await fileWindow("Class");
+      if (filePath === undefined) {
+        vscode.window.showErrorMessage("Could not find file path!");
+        return;
+      }
+      await createFile(fileFolder, filePath);
+      console.log("test");
     }
   );
   context.subscriptions.push(disposable);
