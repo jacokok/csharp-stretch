@@ -50,12 +50,8 @@ Additionally the root namespace can also be specified in the .csproj file.
 
 ## Todo
 
-- [x] Derive namespace from csproj RootNamespace or folder
-- [x] Create new C# Class with namespace in modern syntax
 - [ ] Add ESLint
 - [ ] Add Tests
-- [x] Add namespace fill autocomplete
-- [x] Add namespace fixer to use with snippets
 - [ ] Templates for new items
 
 ## Special Thanks
