@@ -12,7 +12,7 @@ export const getNamespace = async (fileDirName: string) => {
   if (!csprojInfo) {
     const rootPathFolder = getRootNamespaceFromFileName(getRootPath());
     const currentFolder = getRootNamespaceFromFileName(fileDirName);
-    if (rootPathFolder == currentFolder) {
+    if (rootPathFolder === currentFolder) {
       return rootPathFolder;
     }
     return `${rootPathFolder}.${currentFolder}`;
@@ -81,7 +81,7 @@ const resolveNamespace = (
 ) =>
   path
     .join(rootNamespace, projectRootRelativePath)
-    .replace(/[\/\\]/g, ".")
+    .replace(/[/\\]/g, ".")
     .replace(/[^\w.]/g, "_")
     .replace(/[.]{2,}/g, ".")
     .replace(/^[.]+/, "")

@@ -32,7 +32,7 @@ export const createFile = async (
 
 export const fileWindow = async (template: string) => {
   try {
-    let newFilename = await vscode.window.showInputBox({
+    const newFilename = await vscode.window.showInputBox({
       ignoreFocusOut: true,
       prompt: "Please enter a name for the new file(s)",
       value: `New${template}`,
@@ -68,7 +68,7 @@ export const getTemplate = async (
   namespace: string
 ) => {
   const templatePath =
-    vscode.extensions.getExtension("jacokok.csharp-stretch")!.extensionPath +
+    vscode.extensions.getExtension("jacokok.csharp-stretch")?.extensionPath +
     "/templates/" +
     templateName +
     ".txt";
@@ -92,7 +92,9 @@ const findCursorInTemplate = (text: string): vscode.Position | null => {
   const preCursor = text.substring(0, cursorPos);
   const matchesForPreCursor = preCursor.match(/\n/gi);
 
-  if (matchesForPreCursor === null) return null;
+  if (matchesForPreCursor === null) {
+    return null;
+  }
 
   const lineNum = matchesForPreCursor.length;
   const charNum = preCursor.substring(preCursor.lastIndexOf("\n")).length;

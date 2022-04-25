@@ -5,5 +5,5 @@
     "readme.md": "*.md, LICENSE",
     "README.md": "*.md, LICENSE"
   },
-  "cSpell.words": ["csharpstretch"]
+  "cSpell.words": ["csharpstretch", "eqeqeq"]
 }

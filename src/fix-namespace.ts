@@ -10,15 +10,14 @@ export const fixNamespace = async () => {
 
   const namespace = await getNamespace(path.dirname(document.fileName));
 
-  let namespaceRegex = new RegExp(/namespace\s/g);
+  const namespaceRegex = new RegExp(/namespace\s/g);
   let namespaceLine = -1;
   let isModernSyntax = false;
-  for (let i = 0; i < document!.lineCount; i++) {
-    let documentLine = document?.lineAt(i);
-    let match;
-    if ((match = namespaceRegex.exec(documentLine!.text))) {
+  for (let i = 0; i < document?.lineCount; i++) {
+    const documentLine = document?.lineAt(i);
+    if (namespaceRegex.exec(documentLine?.text)) {
       namespaceLine = i;
-      isModernSyntax = documentLine!.text.includes(";");
+      isModernSyntax = documentLine?.text.includes(";");
       break;
     }
   }
@@ -33,7 +32,7 @@ export const fixNamespace = async () => {
       editBuilder.delete(
         new vscode.Range(namespaceLine, 0, namespaceLine + 1, 0)
       );
-      var newNamespaceLineValue = isModernSyntax
+      const newNamespaceLineValue = isModernSyntax
         ? `namespace ${namespace};\n`
         : `namespace ${namespace}\n`;
       editBuilder.insert(
