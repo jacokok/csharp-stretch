@@ -2,7 +2,8 @@
   "explorer.experimental.fileNesting.enabled": true,
   "explorer.experimental.fileNesting.patterns": {
     "package.json": "package-lock.json",
-    "readme.md": "*.md, LICENSE"
+    "readme.md": "*.md, LICENSE",
+    "README.md": "*.md, LICENSE"
   },
   "cSpell.words": ["csharpstretch"]
 }
