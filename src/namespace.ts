@@ -15,6 +15,9 @@ export const getNamespace = async (fileDirName: string) => {
     if (rootPathFolder === currentFolder) {
       return rootPathFolder;
     }
+    if (rootPathFolder.length <= 0) {
+      return currentFolder;
+    }
     return `${rootPathFolder}.${currentFolder}`;
   }
 
