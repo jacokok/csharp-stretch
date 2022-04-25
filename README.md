@@ -2,6 +2,8 @@
 
 Simple VSCode extension to improve and stretch c# experience
 
+Warning: This is in beta state and only tested on fedora for now.
+
 ![C# Stretch logo](/assets/logo.png "C# Stretch logo")
 
 ## Features
@@ -30,6 +32,14 @@ Additionally the root namespace can also be specified in the .csproj file.
 <RootNamespace>TestMake</RootNamespace>
 ```
 
+### Fill Namespace
+
+![Example](assets/fill.gif)
+
+### Fix Namespace
+
+![Example](assets/fix.gif)
+
 ## Why This Extension
 
 - Lightweight and super simple
@@ -44,8 +54,8 @@ Additionally the root namespace can also be specified in the .csproj file.
 - [x] Create new C# Class with namespace in modern syntax
 - [ ] Add ESLint
 - [ ] Add Tests
-- [ ] Add namespace fill autocomplete
-- [ ] Add namespace fixer to use with snippets
+- [x] Add namespace fill autocomplete
+- [x] Add namespace fixer to use with snippets
 - [ ] Templates for new items
 
 ## Special Thanks

@@ -3,15 +3,15 @@ import * as fs from "fs";
 import * as path from "path";
 import { getRootPath } from "./utils";
 
-export const getNamespace = async (fileName: string) => {
+export const getNamespace = async (fileDirName: string) => {
   // const fileDir = path.dirname(document.fileName);
   // const fileDir = path.dirname(fileName);
-  const csprojInfo = getCsprojFile(fileName);
+  const csprojInfo = getCsprojFile(fileDirName);
 
   // Best guess with no csproj
   if (!csprojInfo) {
     const rootPathFolder = getRootNamespaceFromFileName(getRootPath());
-    const currentFolder = getRootNamespaceFromFileName(fileName);
+    const currentFolder = getRootNamespaceFromFileName(fileDirName);
     if (rootPathFolder == currentFolder) {
       return rootPathFolder;
     }
@@ -24,7 +24,7 @@ export const getNamespace = async (fileName: string) => {
     rootNamespace = getRootNamespaceFromFileName(csprojInfo.fileName);
   }
 
-  const projectRootRelativePath = path.relative(csprojInfo.dir, fileName);
+  const projectRootRelativePath = path.relative(csprojInfo.dir, fileDirName);
 
   const namespace = resolveNamespace(rootNamespace, projectRootRelativePath);
 

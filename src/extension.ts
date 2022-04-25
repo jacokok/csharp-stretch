@@ -1,21 +1,30 @@
 import * as vscode from "vscode";
-import { RegisterCommandArgs } from "./types";
-import { getPath, createFile, fileWindow } from "./utils";
+import { namespaceCompletion } from "./completions";
+import { fixNamespace } from "./fix-namespace";
+import { createClass } from "./create";
 
 export function activate(context: vscode.ExtensionContext) {
   vscode.commands.executeCommand("setContext", "csharpstretch.showMenu", true);
   const disposable = vscode.commands.registerCommand(
     "csharpstretch.createClass",
-    async (options: RegisterCommandArgs) => {
-      const fileFolder = getPath(options);
-      const filePath = await fileWindow("Class");
-      if (filePath === undefined) {
-        vscode.window.showErrorMessage("Could not find file path!");
-        return;
-      }
-      await createFile(fileFolder, filePath, "class");
-    }
+    createClass
   );
+
+  context.subscriptions.push(
+    vscode.commands.registerCommand("csharpstretch.fixNamespace", fixNamespace)
+  );
+
+  const namespaceCompletionProvider =
+    vscode.languages.registerCompletionItemProvider(
+      { scheme: "file", language: "csharp" },
+      {
+        async provideCompletionItems(document) {
+          return await namespaceCompletion(document.fileName);
+        },
+      }
+    );
+
+  context.subscriptions.push(namespaceCompletionProvider);
   context.subscriptions.push(disposable);
 }
 

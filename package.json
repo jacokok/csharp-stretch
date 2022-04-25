@@ -60,6 +60,10 @@
       {
         "command": "csharpstretch.createClass",
         "title": "Class"
+      },
+      {
+        "command": "csharpstretch.fixNamespace",
+        "title": "Fix Namespace"
       }
     ]
   },
