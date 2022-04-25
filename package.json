@@ -46,7 +46,7 @@
       "explorer/context": [
         {
           "submenu": "csharpstretch.newItem",
-          "when": "explorerResourceIsFolder"
+          "when": "explorerResourceIsFolder && csharpstretch.showMenu"
         }
       ],
       "commandPalette": [

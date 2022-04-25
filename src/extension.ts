@@ -3,6 +3,7 @@ import { RegisterCommandArgs } from "./types";
 import { getPath, createFile, fileWindow } from "./utils";
 
 export function activate(context: vscode.ExtensionContext) {
+  vscode.commands.executeCommand("setContext", "csharpstretch.showMenu", true);
   const disposable = vscode.commands.registerCommand(
     "csharpstretch.createClass",
     async (options: RegisterCommandArgs) => {

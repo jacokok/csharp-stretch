@@ -29,3 +29,11 @@ Additionally the root namespace can also be spcified in the .csproj file.
 ```xml
 <RootNamespace>TestMake</RootNamespace>
 ```
+
+## Publish
+
+```bash
+npm i -g vsce
+vsce package
+vsce publish minor
+```

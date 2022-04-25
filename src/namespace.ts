@@ -1,14 +1,21 @@
 import * as vscode from "vscode";
 import * as fs from "fs";
 import * as path from "path";
+import { getRootPath } from "./utils";
 
 export const getNamespace = async (fileName: string) => {
   // const fileDir = path.dirname(document.fileName);
   // const fileDir = path.dirname(fileName);
   const csprojInfo = getCsprojFile(fileName);
 
+  // Best guess with no csproj
   if (!csprojInfo) {
-    return "";
+    const rootPathFolder = getRootNamespaceFromFileName(getRootPath());
+    const currentFolder = getRootNamespaceFromFileName(fileName);
+    if (rootPathFolder == currentFolder) {
+      return rootPathFolder;
+    }
+    return `${rootPathFolder}.${currentFolder}`;
   }
 
   let rootNamespace = await getRootNameSpaceCsproj(csprojInfo.fullPath);
