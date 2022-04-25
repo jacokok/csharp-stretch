@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [master]
+    branches: [main]
   workflow_dispatch:
 
 jobs:
@@ -18,9 +18,9 @@ jobs:
         run: npm i
       - name: lint
         run: npm run lint
-      - name: test
-        run: |
-          echo "Starting test"
-          npm run compile
-          npm run test
-          echo "Finishing test"
+      # - name: test
+      #   run: |
+      #     echo "Starting test"
+      #     npm run compile
+      #     npm run test
+      #     echo "Finishing test"
