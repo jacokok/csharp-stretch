@@ -42,7 +42,7 @@ suite("namespace", () => {
     });
   });
 
-  test(`getNamespace with folder`, async () => {
+  test("getNamespace with folder", async () => {
     const actual = await getNamespace(fixturePath);
     assert.strictEqual(actual, "suite");
   });

@@ -2,8 +2,6 @@
 
 Simple VSCode extension to improve and stretch c# experience
 
-Warning: This is in beta state and only tested on fedora for now.
-
 ![C# Stretch logo](/assets/logo.png "C# Stretch logo")
 
 ## Features
@@ -20,6 +18,41 @@ namespace TestMake.Features.PDF;
 public class NewClass
 {
     
+}
+```
+
+### Create Interface
+
+```csharp
+namespace TestMake.Features.PDF;
+
+public interface NewInterface
+{
+    
+}
+```
+
+### Create Old Class
+
+```csharp
+namespace TestMake.Features.PDF
+{
+    public class OldClass
+    {
+        
+    }
+}
+```
+
+### Create Old Interface
+
+```csharp
+namespace TestMake.Features.PDF
+{
+    public interface OldInterface
+    {
+        
+    }
 }
 ```
 
@@ -40,19 +73,21 @@ Additionally the root namespace can also be specified in the .csproj file.
 
 ![Example](assets/fix.gif)
 
+### Settings
+
+![Example](assets/settings.png)
+
+- Can disable context menu completely.
+- Can toggle context menu options on and off
+
 ## Why This Extension
 
 - Lightweight and super simple
 - No external dependencies
 - Private (No Data collection or telemetry)
-- Modern C# syntax
+- Modern C# syntax (As well as option to enable old namespace syntax)
 - Context menu to create C# files only visible after C# language activation (This drove me to create this extension)
-
-## Todo
-
-- [ ] Add ESLint
-- [ ] Add Tests
-- [ ] Templates for new items
+- Context menu settings to show and hide items
 
 ## Special Thanks
 

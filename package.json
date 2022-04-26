@@ -8,7 +8,7 @@
     "url": "https://github.com/jacokok/csharp-stretch"
   },
   "icon": "assets/logo.png",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "engines": {
     "vscode": "^1.56.0"
   },
@@ -29,7 +29,10 @@
   "activationEvents": [
     "onLanguage:csharp",
     "onCommand:csharpstretch.createClass",
-    "onCommand:csharpstretch.fixNamespace"
+    "onCommand:csharpstretch.fixNamespace",
+    "onCommand:csharpstretch.createOldClass",
+    "onCommand:csharpstretch.createInterface",
+    "onCommand:csharpstretch.createOldInterface"
   ],
   "contributes": {
     "submenus": [
@@ -41,7 +44,20 @@
     "menus": {
       "csharpstretch.newItem": [
         {
-          "command": "csharpstretch.createClass"
+          "command": "csharpstretch.createClass",
+          "when": "csharpstretch.class"
+        },
+        {
+          "command": "csharpstretch.createOldClass",
+          "when": "csharpstretch.oldClass"
+        },
+        {
+          "command": "csharpstretch.createInterface",
+          "when": "csharpstretch.interface"
+        },
+        {
+          "command": "csharpstretch.createOldInterface",
+          "when": "csharpstretch.oldInterface"
         }
       ],
       "explorer/context": [
@@ -54,6 +70,18 @@
         {
           "command": "csharpstretch.createClass",
           "when": "false"
+        },
+        {
+          "command": "csharpstretch.createOldClass",
+          "when": "false"
+        },
+        {
+          "command": "csharpstretch.createInterface",
+          "when": "false"
+        },
+        {
+          "command": "csharpstretch.createOldInterface",
+          "when": "false"
         }
       ]
     },
@@ -63,8 +91,52 @@
         "title": "Class"
       },
       {
+        "command": "csharpstretch.createOldClass",
+        "title": "Old Class"
+      },
+      {
+        "command": "csharpstretch.createInterface",
+        "title": "Interface"
+      },
+      {
+        "command": "csharpstretch.createOldInterface",
+        "title": "Old Interface"
+      },
+      {
         "command": "csharpstretch.fixNamespace",
         "title": "Fix Namespace"
+      }
+    ],
+    "configuration": [
+      {
+        "title": "C# Stretch",
+        "properties": {
+          "csharpstretch.showMenu": {
+            "type": "boolean",
+            "markdownDescription": "Enable new C# file, context menu",
+            "default": true
+          },
+          "csharpstretch.class": {
+            "type": "boolean",
+            "markdownDescription": "Show Class",
+            "default": true
+          },
+          "csharpstretch.oldClass": {
+            "type": "boolean",
+            "markdownDescription": "Show OldClass",
+            "default": false
+          },
+          "csharpstretch.interface": {
+            "type": "boolean",
+            "markdownDescription": "Show Interface",
+            "default": true
+          },
+          "csharpstretch.oldInterface": {
+            "type": "boolean",
+            "markdownDescription": "Show OldInterface",
+            "default": false
+          }
+        }
       }
     ]
   },

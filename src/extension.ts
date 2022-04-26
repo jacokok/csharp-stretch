@@ -1,14 +1,10 @@
 import * as vscode from "vscode";
 import { namespaceCompletion } from "./completions";
 import { fixNamespace } from "./fix-namespace";
-import { createClass } from "./create";
+import { setContextActions } from "./contextActions";
 
 export function activate(context: vscode.ExtensionContext) {
-  vscode.commands.executeCommand("setContext", "csharpstretch.showMenu", true);
-  const disposable = vscode.commands.registerCommand(
-    "csharpstretch.createClass",
-    createClass
-  );
+  setContextActions(context);
 
   context.subscriptions.push(
     vscode.commands.registerCommand("csharpstretch.fixNamespace", fixNamespace)
@@ -25,7 +21,6 @@ export function activate(context: vscode.ExtensionContext) {
     );
 
   context.subscriptions.push(namespaceCompletionProvider);
-  context.subscriptions.push(disposable);
 }
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
