@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.0.1
+
+- New C# Class Template bug fix
+
 ## 1.0.0
 
 - New templates
