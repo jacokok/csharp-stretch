@@ -1,12 +1,39 @@
 import { writeFile } from "fs/promises";
-import { RegisterCommandArgs } from "./types";
 import * as vscode from "vscode";
 import { getNamespace } from "./namespace";
 import * as path from "path";
+import * as fs from "fs";
+import { Uri } from "vscode";
 
-export const getPath = (options: RegisterCommandArgs) => {
+export const getPathAndFolder = (options: Uri) => {
+  const p = options.fsPath || options.path;
+  const parsedPath = path.parse(p);
+  return {
+    folder: parsedPath.dir,
+    file: parsedPath.name,
+  };
+};
+
+export const getFolder = (options: Uri) => {
+  const p = options.fsPath || options.path;
+  const stat = fs.statSync(p);
+  if (stat.isFile()) {
+    const parsedPath = path.parse(p);
+    return parsedPath.dir;
+  } else {
+    return p;
+  }
+};
+
+export const isFileEmpty = (options: Uri) => {
+  const p = options.fsPath || options.path;
+  const stat = fs.statSync(p);
+  return stat.size <= 0;
+};
+
+export const getPath = (options: Uri) => {
   if (options) {
-    return options._fsPath || options.fsPath || options.path;
+    return options.fsPath || options.path;
   }
 
   return getRootPath();

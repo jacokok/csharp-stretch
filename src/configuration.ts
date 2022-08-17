@@ -2,6 +2,7 @@ import * as vscode from "vscode";
 
 interface Config {
   showMenu: boolean;
+  showMenuOnFiles: boolean;
   class: boolean;
   oldClass: boolean;
   interface: boolean;
@@ -26,6 +27,12 @@ export const initConfiguration = () => {
     "setContext",
     "csharpstretch.showMenu",
     config.showMenu
+  );
+
+  vscode.commands.executeCommand(
+    "setContext",
+    "csharpstretch.showMenuOnFiles",
+    config.showMenuOnFiles
   );
 
   vscode.commands.executeCommand(

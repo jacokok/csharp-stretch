@@ -1,5 +1,4 @@
-export interface RegisterCommandArgs {
-  _fsPath: string;
-  fsPath: string;
-  path: string;
+export interface PickOption {
+  label: string;
+  description: string;
 }
