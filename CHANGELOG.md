@@ -1,5 +1,17 @@
 # Change Log
 
+## 1.2.0
+
+- Updated all dependencies to latest compatible versions
+- Replaced deprecated `vscode` package with `@types/vscode`
+- Removed deprecated `postinstall` script
+- Updated VSCode engine requirement to ^1.74.0
+- Removed deprecated `activationEvents` configuration
+- Updated TypeScript to 5.3.3 with ES2020 target
+- Updated ESLint and TypeScript ESLint packages to latest compatible versions
+- Updated testing packages and Mocha to latest versions
+- Pinned minimatch to compatible version for glob compatibility
+
 ## 1.1.0
 
 - When creating new file with .cs extension you will get same options to create file

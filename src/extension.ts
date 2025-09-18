@@ -38,6 +38,7 @@ export function activate(context: vscode.ExtensionContext) {
     watcher.onDidCreate((uri) =>
       vscode.commands.executeCommand("csharpstretch.newCSFile", uri)
     );
+    context.subscriptions.push(watcher);
   }
 }
 
