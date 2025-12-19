@@ -1,5 +1,10 @@
 # Change Log
 
+## Unreleased
+
+- Upgraded dev dependencies to latest stable versions (ESLint 9, TypeScript 5.9, @typescript-eslint v8)
+- Migrated ESLint configuration to flat config (`eslint.config.js`) and fixed rules incompatible with newer plugin
+
 ## 1.2.0
 
 - Updated all dependencies to latest compatible versions
