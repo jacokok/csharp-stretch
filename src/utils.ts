@@ -4,6 +4,7 @@ import { getNamespace } from "./namespace";
 import * as path from "path";
 import * as fs from "fs";
 import { Uri } from "vscode";
+import { PickOption } from "./types";
 
 export const getPathAndFolder = (options: Uri) => {
   const p = options.fsPath || options.path;
@@ -139,6 +140,19 @@ export const getTemplate = async (
     .replace(fileNameRegex, fileName);
 
   return templateResult;
+};
+
+export const pickSingleOrShow = async (
+  list: Array<PickOption>,
+  options?: vscode.QuickPickOptions
+): Promise<PickOption | undefined> => {
+  if (!list || list.length === 0) {
+    return undefined;
+  }
+  if (list.length === 1) {
+    return list[0];
+  }
+  return await vscode.window.showQuickPick<PickOption>(list, options);
 };
 
 const findCursorInTemplate = (text: string): vscode.Position | null => {
