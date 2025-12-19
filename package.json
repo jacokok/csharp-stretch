@@ -79,6 +79,10 @@
         {
           "command": "csharpstretch.createFile",
           "when": "true"
+        },
+        {
+          "command": "csharpstretch.createInFile",
+          "when": "true"
         }
       ]
     },
@@ -107,6 +111,11 @@
       {
         "command": "csharpstretch.createFile",
         "title": "Create C# File",
+        "category": "csharp-stretch"
+      },
+      {
+        "command": "csharpstretch.createInFile",
+        "title": "Create C# File In Current File",
         "category": "csharp-stretch"
       },
       {

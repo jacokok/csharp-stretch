@@ -89,6 +89,33 @@ const saveTemplateToFile = async (template: string, filePath: string) => {
   }
 };
 
+export const replaceEditorContentWithTemplate = async (
+  template: string,
+  editor: vscode.TextEditor
+) => {
+  const cursorPosition = findCursorInTemplate(template);
+  const templateResult = template.replace("${cursor}", "");
+
+  const doc = editor.document;
+  const lastLine = doc.lineAt(doc.lineCount - 1);
+  const fullRange = new vscode.Range(
+    new vscode.Position(0, 0),
+    lastLine.range.end
+  );
+
+  await editor.edit((editBuilder) => {
+    editBuilder.replace(fullRange, templateResult);
+  });
+
+  if (cursorPosition) {
+    const newSelection = new vscode.Selection(cursorPosition, cursorPosition);
+    editor.selection = newSelection;
+    editor.revealRange(newSelection);
+  }
+
+  await doc.save();
+};
+
 export const getTemplate = async (
   templateName: string,
   fileName: string,
