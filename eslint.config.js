@@ -1,8 +1,8 @@
 const { FlatCompat } = require("@eslint/eslintrc");
 const compat = new FlatCompat({
   baseDirectory: __dirname,
-  recommendedConfig: require('@eslint/js').configs.recommended,
-  allConfig: require('@eslint/js').configs.all,
+  recommendedConfig: require("@eslint/js").configs.recommended,
+  allConfig: require("@eslint/js").configs.all,
 });
 
 module.exports = [
