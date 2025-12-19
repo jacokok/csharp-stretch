@@ -2,12 +2,17 @@ import * as vscode from "vscode";
 import { Uri } from "vscode";
 import { getConfiguration } from "./configuration";
 import { PickOption } from "./types";
+import * as path from "path";
+import { getNamespace } from "./namespace";
 import {
   createFile,
   isFileEmpty,
   getPathAndFolder,
   getFolder,
   fileWindow,
+  getTemplate,
+  replaceEditorContentWithTemplate,
+  pickSingleOrShow,
 } from "./utils";
 
 const getQuickPickList = () => {
@@ -40,7 +45,7 @@ export const fileWatcher = async (options: Uri) => {
 
   const { file, folder } = getPathAndFolder(options);
 
-  const target = await vscode.window.showQuickPick(getQuickPickList(), {
+  const target = await pickSingleOrShow(getQuickPickList(), {
     placeHolder: "Select file type",
   });
 
@@ -56,7 +61,7 @@ export const fileCreator = async () => {
   await vscode.env.clipboard.writeText(originalClipboard);
   const newUri = await vscode.Uri.file(folder);
   const fileFolder = getFolder(newUri);
-  const target = await vscode.window.showQuickPick(getQuickPickList(), {
+  const target = await pickSingleOrShow(getQuickPickList(), {
     placeHolder: "Select file type",
   });
   if (target) {
@@ -68,4 +73,33 @@ export const fileCreator = async () => {
     await createFile(fileFolder, filePath, target.label);
   }
   // vscode.commands.executeCommand("csharpstretch.createClass", options);
+};
+
+export const createInFile = async () => {
+  const editor = vscode.window.activeTextEditor;
+  if (!editor) {
+    vscode.window.showErrorMessage("No active editor found to create file in.");
+    return;
+  }
+
+  const doc = editor.document;
+  if (path.extname(doc.fileName) !== ".cs") {
+    vscode.window.showErrorMessage(
+      "Active file must be a C# (.cs) file to use this command."
+    );
+    return;
+  }
+
+  const file = path.parse(doc.fileName).name;
+  const fileFolder = getFolder(doc.uri);
+
+  const target = await pickSingleOrShow(getQuickPickList(), {
+    placeHolder: "Select file type",
+  });
+
+  if (target) {
+    const namespace = await getNamespace(fileFolder);
+    const template = await getTemplate(target.label, file, namespace);
+    await replaceEditorContentWithTemplate(template, editor);
+  }
 };

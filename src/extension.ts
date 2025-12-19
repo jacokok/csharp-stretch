@@ -2,13 +2,17 @@ import * as vscode from "vscode";
 import { namespaceCompletion } from "./completions";
 import { fixNamespace } from "./fix-namespace";
 import { setContextActions } from "./contextActions";
-import { fileCreator, fileWatcher } from "./fileWatcher";
+import { fileCreator, fileWatcher, createInFile } from "./fileWatcher";
 
 export function activate(context: vscode.ExtensionContext) {
   setContextActions(context);
 
   context.subscriptions.push(
     vscode.commands.registerCommand("csharpstretch.createFile", fileCreator)
+  );
+
+  context.subscriptions.push(
+    vscode.commands.registerCommand("csharpstretch.createInFile", createInFile)
   );
 
   context.subscriptions.push(
@@ -42,5 +46,4 @@ export function activate(context: vscode.ExtensionContext) {
   }
 }
 
-// eslint-disable-next-line @typescript-eslint/no-empty-function
 export function deactivate() {}
