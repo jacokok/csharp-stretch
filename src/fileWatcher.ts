@@ -44,9 +44,18 @@ export const fileWatcher = async (options: Uri) => {
 
   const { file, folder } = getPathAndFolder(options);
 
-  const target = await vscode.window.showQuickPick(getQuickPickList(), {
-    placeHolder: "Select file type",
-  });
+  const list = getQuickPickList();
+  let target;
+  if (list.length === 0) {
+    return;
+  }
+  if (list.length === 1) {
+    target = list[0];
+  } else {
+    target = await vscode.window.showQuickPick(list, {
+      placeHolder: "Select file type",
+    });
+  }
 
   if (target) {
     await createFile(folder, file, target.label);
@@ -60,9 +69,18 @@ export const fileCreator = async () => {
   await vscode.env.clipboard.writeText(originalClipboard);
   const newUri = await vscode.Uri.file(folder);
   const fileFolder = getFolder(newUri);
-  const target = await vscode.window.showQuickPick(getQuickPickList(), {
-    placeHolder: "Select file type",
-  });
+  const list = getQuickPickList();
+  let target;
+  if (list.length === 0) {
+    return;
+  }
+  if (list.length === 1) {
+    target = list[0];
+  } else {
+    target = await vscode.window.showQuickPick(list, {
+      placeHolder: "Select file type",
+    });
+  }
   if (target) {
     const filePath = await fileWindow(target.label);
     if (filePath === undefined) {
@@ -92,9 +110,18 @@ export const createInFile = async () => {
   const file = path.parse(doc.fileName).name;
   const fileFolder = getFolder(doc.uri);
 
-  const target = await vscode.window.showQuickPick(getQuickPickList(), {
-    placeHolder: "Select file type",
-  });
+  const list = getQuickPickList();
+  let target;
+  if (list.length === 0) {
+    return;
+  }
+  if (list.length === 1) {
+    target = list[0];
+  } else {
+    target = await vscode.window.showQuickPick(list, {
+      placeHolder: "Select file type",
+    });
+  }
 
   if (target) {
     const namespace = await getNamespace(fileFolder);
